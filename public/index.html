@@ -20,7 +20,7 @@
 <body>
 
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top">
         <a class="navbar-brand navbar-light text-white" href="/">Workout Tracker</a>
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
             aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,7 +32,7 @@
                     <a class="nav-link text-white" href="#today-section">Todays Workout</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white">Previous Workout</a>
+                    <a class="nav-link text-white" href="#previous-section">Previous Workout</a>
                 </li>
             </ul>
         </div>
@@ -44,7 +44,7 @@
                 <div class="col-md-12 mt-5">
                     <h1 class="text-center">Create New Workout</h1>
                     <div class="my-4">
-                        <form action="/submit-workout" method="POST">
+                        <form action="/" method="POST">
                             <div class="form-group">
                                 <input type="text" name="name" class="form-control" id="workout-name"
                                     placeholder="Enter Workout Name">
@@ -53,35 +53,6 @@
                                 Workout</button>
                         </form>
                     </div>
-
-                    <div class="card">
-                        <div class="card-body">
-
-                            <form action="/submit-exercise" method="POST" id="workout-form">
-                                <div class="form-group">
-                                    <input type="text" name="exerciseName" class="form-control" id="exercise-name"
-                                        placeholder="Enter Exercise">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" name="setNum" class="form-control" id="set-number"
-                                        placeholder="Enter Sets">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" name="repNum" class="form-control" id="rep-number"
-                                        placeholder="Enter Reps">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" name="weight" class="form-control" id="weight"
-                                        placeholder="Enter Weight in Pounds">
-                                </div>
-
-                                <button type="submit" class="btn btn-primary btn-block" id="add-exercise">Add
-                                    Exercise</button>
-
-                            </form>
-                        </div>
-                    </div>
-                    <button><a href="/populatedexercises">see your workouts</a></button>
                 </div>
             </div>
     </section>
@@ -91,12 +62,16 @@
             <div class="row" id="new-workout">
 
             </div>
+            <div class="row" id="add-new">
+
+
+            </div>
         </div>
     </section>
 
     <section id="previous-section">
         <div class="container">
-            <div class="row">
+            <div class="row" id="prev-workout">
 
             </div>
         </div>
