@@ -1,7 +1,6 @@
 const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
-const routes = require("./controller/api-routes.js");
 const db = require("./models");
 
 const PORT = process.env.PORT || 3000;
@@ -19,6 +18,8 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/exercisedb", {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
+
+const routes = require("./controller/api-routes.js");
 
 app.use(routes);
 
