@@ -90,19 +90,21 @@ function getPrevious() {
       colDiv.addClass("col-md-3 text-center");
       $("#prev-workout").append(colDiv);
 
-      let cardDiv = $('<div class="card shadow">');
+      let cardDiv = $(
+        '<div class="card shadow" style="background-color: #490691">'
+      );
       $(colDiv).append(cardDiv);
 
       let cardBody = $('<div class="card-body">');
       $(cardDiv).append(cardBody);
 
-      let h2 = $("<h2>");
+      let h2 = $('<h2 class="text-white">');
       h2.addClass("workout-name");
       h2.html(`${data[i].name}`);
       $(cardBody).append(h2);
 
       let viewBtn = $(
-        '<button class="btn btn-primary btn-block my-5" data-toggle="collapse" href="#exerciseCollapse" role="button" aria-expanded="false" aria-controls="collapseExample">'
+        '<button class="btn btn-light btn-block my-5" data-toggle="collapse" href="#exerciseCollapse" role="button" aria-expanded="false" aria-controls="collapseExample">'
       );
       viewBtn.html("View Exercises");
       $(cardBody).append(viewBtn);
@@ -136,3 +138,29 @@ function getPrevious() {
 
 getToday();
 getPrevious();
+
+$("body").scrollspy({ target: "#main-nav" });
+
+// Add smooth scrolling
+$("#main-nav a").on("click", function(e) {
+  // Check for a hash value
+  if (this.hash !== "") {
+    // Prevent default behavior
+    e.preventDefault();
+
+    // Store hash
+    const hash = this.hash;
+
+    // Animate smooth scroll
+    $("html, body").animate(
+      {
+        scrollTop: $(hash).offset().top
+      },
+      900,
+      function() {
+        // Add hash to URL after scroll
+        window.location.hash = hash;
+      }
+    );
+  }
+});

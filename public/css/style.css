@@ -1,3 +1,19 @@
 .hide {
     display: none;
 }
+
+#previous-section {
+    background-color: #7b03fc
+}
+
+
+
+.btn-light {
+    background-color: #7b03fc;
+    color: white;
+}
+
+.btn-light:hover {
+    background-color: #7b03fc;
+    color: white;
+}
