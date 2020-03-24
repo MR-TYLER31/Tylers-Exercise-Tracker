@@ -3,9 +3,9 @@ function getToday() {
   $("#new-workout").empty();
   // Grab all of the current notes
   $.get("/all", function(data) {
-    // For each note...
     // console.log(data);
-    for (var i = 0; i < data.length; i++) {
+    // Loop through the workouts
+    for (var i = 0; i < 1; i++) {
       let colDiv = $("<div>");
       colDiv.addClass("col-md-12 text-center");
       $("#new-workout").append(colDiv);
@@ -20,6 +20,7 @@ function getToday() {
       h1.append(h2);
 
       let item = data[i].exercises;
+      // Loop through the exercises
       for (var j = 0; j < item.length; j++) {
         console.log(item[j]);
 
@@ -84,39 +85,50 @@ function getPrevious() {
   $.get("/all", function(data) {
     // For each note...
     console.log(data);
-    for (var i = 1; i < data.length; i++) {
+    for (var i = 0; i < data.length; i++) {
       let colDiv = $("<div>");
-      colDiv.addClass("col-md-12 text-center");
+      colDiv.addClass("col-md-3 text-center");
       $("#prev-workout").append(colDiv);
 
-      let h1 = $("<h1>");
-      h1.html("Yesterdays Workout");
-      $(colDiv).append(h1);
+      let cardDiv = $('<div class="card shadow">');
+      $(colDiv).append(cardDiv);
+
+      let cardBody = $('<div class="card-body">');
+      $(cardDiv).append(cardBody);
 
       let h2 = $("<h2>");
       h2.addClass("workout-name");
       h2.html(`${data[i].name}`);
-      h1.append(h2);
+      $(cardBody).append(h2);
+
+      let viewBtn = $(
+        '<button class="btn btn-primary btn-block my-5" data-toggle="collapse" href="#exerciseCollapse" role="button" aria-expanded="false" aria-controls="collapseExample">'
+      );
+      viewBtn.html("View Exercises");
+      $(cardBody).append(viewBtn);
 
       let item = data[i].exercises;
       for (var j = 0; j < item.length; j++) {
         console.log(item[j]);
 
+        let cardCollapse = $('<div class="collapse" id="exerciseCollapse">');
+        $(viewBtn).append(cardCollapse);
+
         let h3 = $("<h3>");
         h3.html(`Exercise: ${item[j].exerciseName}`);
-        $(colDiv).append(h3);
+        $(cardCollapse).append(h3);
 
         let set = $("<p>");
         set.html(`Sets: ${item[j].setNum}`);
-        $(colDiv).append(set);
+        $(cardCollapse).append(set);
 
         let rep = $("<p>");
         rep.html(`Reps: ${item[j].repNum}`);
-        $(colDiv).append(rep);
+        $(cardCollapse).append(rep);
 
         let weight = $("<p>");
         weight.html(`Weight: ${item[j].weight}`);
-        $(colDiv).append(weight);
+        $(cardCollapse).append(weight);
       }
     }
   });
