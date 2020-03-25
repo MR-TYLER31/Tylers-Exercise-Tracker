@@ -27,6 +27,7 @@ router.post("/", ({ body }, res) => {
 });
 
 router.post("/submit", ({ body }, res) => {
+  //   id = req.params.id;
   db.Exercise.create(body)
     .then(({ _id }) =>
       db.Workout.findOneAndUpdate(
@@ -42,5 +43,13 @@ router.post("/submit", ({ body }, res) => {
       res.json(err);
     });
 });
+
+// router.put("/api/add/:id", function(req, res) {
+//   let id = req.params.id;
+
+//   db.Exercise.update(id, data => {
+//     res.json(data);
+//   });
+// });
 
 module.exports = router;

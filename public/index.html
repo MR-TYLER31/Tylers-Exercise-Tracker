@@ -22,9 +22,9 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top" id="main-nav">
         <a class="navbar-brand navbar-light text-white" href="#new-section">Workout Tracker</a>
-        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+        <button class="d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
             aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <span><i class="fas fa-bars fa-lg text-white"></i></span>
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -38,10 +38,11 @@
         </div>
     </nav>
 
-    <section id="new-section">
+    <section id="new-section" class="mt-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 mt-5">
+                    <img id="header-img" src="/img/img.jpg" alt="Header Pic">
                     <h1 class="text-center">Create New Workout</h1>
                     <div class="my-4">
                         <form action="/" method="POST">
@@ -49,7 +50,7 @@
                                 <input type="text" name="name" class="form-control" id="workout-name"
                                     placeholder="Enter Workout Name">
                             </div>
-                            <button type="submit" class="btn btn-primary btn-block" id="add-workout">Add New
+                            <button type="submit" class="btn btn-outline-primary btn-block" id="add-workout">Add New
                                 Workout</button>
                         </form>
                     </div>
@@ -69,7 +70,7 @@
         </div>
     </section>
 
-    <section id="previous-section" class="py-5">
+    <section id="previous-section" class="py-3">
         <div class="container">
             <h1 class="text-center text-white mt-5">Previous Workouts</h1>
             <div class="row py-5" id="prev-workout">
@@ -79,7 +80,33 @@
         </div>
     </section>
 
+    <!-- Add exercise modal -->
+    <div class="modal fade" id="add-exercise">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content p-3">
+                <form action="/submit" method="POST">
+                    <div class="form-group">
+                        <input type="text" name="exerciseName" class="form-control" id="exercise-name"
+                            placeholder="Enter Exercise">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="setNum" class="form-control" id="set-number" placeholder="Enter Sets">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="repNum" class="form-control" id="rep-number" placeholder="Enter Reps">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="weight" class="form-control" id="weight"
+                            placeholder="Enter Weight in Pounds">
+                    </div>
+                    <button type="submit" class="add btn btn-outline-primary btn-block">Add
+                        Exercise
+                    </button>
+                </form>
 
+            </div>
+        </div>
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

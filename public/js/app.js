@@ -6,6 +6,8 @@ function getToday() {
     // console.log(data);
     // Loop through the workouts
     for (var i = 0; i < 1; i++) {
+      //   let last = data.slice(-1);
+
       let colDiv = $("<div>");
       colDiv.addClass("col-md-12 text-center");
       $("#new-workout").append(colDiv);
@@ -44,7 +46,7 @@ function getToday() {
 
     $("#add-new").append(`
      <div class="col-md-12">
-                    <button class="btn btn-success btn-block my-5" data-toggle="collapse" href="#collapseExample"
+                    <button class="btn btn-outline-success btn-block my-5" data-toggle="collapse" href="#collapseExample"
                         role="button" aria-expanded="false" aria-controls="collapseExample">add new exercise</button>
                     <div class="collapse" id="collapseExample">
                         <div class="card">
@@ -66,7 +68,7 @@ function getToday() {
                                         <input type="text" name="weight" class="form-control" id="weight"
                                             placeholder="Enter Weight in Pounds">
                                     </div>
-                                    <button type="submit" class="btn btn-primary btn-block" id="add-workout">Add
+                                    <button type="submit" class="btn btn-outline-primary btn-block" id="add-workout">Add
                                     </button>
                                 </form>
                             </div>
@@ -85,13 +87,14 @@ function getPrevious() {
   $.get("/all", function(data) {
     // For each note...
     console.log(data);
-    for (var i = 0; i < data.length; i++) {
+    for (let i = data.length - 1; i >= 0; i--) {
+      //   let last = data.pop();
       let colDiv = $("<div>");
       colDiv.addClass("col-md-3 text-center");
       $("#prev-workout").append(colDiv);
 
       let cardDiv = $(
-        '<div class="card shadow" style="background-color: #490691">'
+        '<div class="card shadow mb-3" style="background-color: #490691">'
       );
       $(colDiv).append(cardDiv);
 
@@ -108,6 +111,13 @@ function getPrevious() {
       );
       viewBtn.html("View Exercises");
       $(cardBody).append(viewBtn);
+
+      let addBtn = $(
+        `<button class="btn btn-outline-light btn-block my-5"  data-toggle="modal" data-target="#add-exercise">`
+      );
+
+      addBtn.html("Add Exercise");
+      $(cardBody).append(addBtn);
 
       let item = data[i].exercises;
       for (var j = 0; j < item.length; j++) {
@@ -136,8 +146,23 @@ function getPrevious() {
   });
 }
 
+$(".add").on("click", function(event) {
+  event.preventDefault();
+  //   let id = $(this).attr("data-id");
+
+  console.log(id);
+  $.ajax("/submit", {
+    type: "POST"
+  }).then(function(resp) {
+    console.log(resp);
+    location.reload();
+  });
+});
+
 getToday();
 getPrevious();
+
+//SCROLL SPY
 
 $("body").scrollspy({ target: "#main-nav" });
 

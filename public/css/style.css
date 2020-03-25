@@ -2,11 +2,17 @@
     display: none;
 }
 
-#previous-section {
-    background-color: #7b03fc
+#header-img {
+    width: 300px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-
+#previous-section {
+    background-color: #7b03fc;
+    min-height: 60vh;
+}
 
 .btn-light {
     background-color: #7b03fc;
@@ -16,4 +22,8 @@
 .btn-light:hover {
     background-color: #7b03fc;
     color: white;
+}
+
+.card.shadow {
+    border: white 1px solid;
 }
