@@ -85,14 +85,16 @@ function getToday() {
   });
 }
 
+// This function will display all created workouts
 function getPrevious() {
   // Empty any results currently on the page
   $("#prev-workout").empty();
-  // Grab all of the current notes
+  // Grab all of the current Workouts
   $.get("/all", function(data) {
     // For each note...
     // console.log(data);
 
+    // Creates modal form to make new exercise
     let exerciseModalForm = $(`  <form action="/submit" method="POST">
                     <div class="form-group">
                         <input type="text" name="exerciseName" class="form-control" id="exercise-name"
@@ -115,6 +117,7 @@ function getPrevious() {
 
     $(".modal-content").append(exerciseModalForm);
 
+    // Loops through all workouts and displays them
     for (let i = data.length - 1; i >= 0; i--) {
       var dateobj = new Date(data[i].created);
       count++;
@@ -154,14 +157,10 @@ function getPrevious() {
       addBtn.html("Add Exercise");
       $(cardBody).append(addBtn);
 
+      // Loops through all exercises and displays them their workout cards
       let item = data[i].exercises;
       for (var j = 0; j < item.length; j++) {
         console.log(item[j]);
-        // count++;
-        // console.log(count);
-        // collapseId = "exerciseCollapse";
-        // collapseId = collapseId + 1;
-        // console.log(collapseId);
         let cardCollapse = $(
           `<div class="collapse" id="exerciseCollapse${count}">`
         );
