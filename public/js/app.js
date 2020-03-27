@@ -92,6 +92,28 @@ function getPrevious() {
   $.get("/all", function(data) {
     // For each note...
     // console.log(data);
+
+    let exerciseModalForm = $(`  <form action="/submit" method="POST">
+                    <div class="form-group">
+                        <input type="text" name="exerciseName" class="form-control" id="exercise-name"
+                            placeholder="Enter Exercise">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="setNum" class="form-control" id="set-number" placeholder="Enter Sets">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="repNum" class="form-control" id="rep-number" placeholder="Enter Reps">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="weight" class="form-control" id="weight"
+                            placeholder="Enter Weight in Pounds">
+                    </div>
+                    <button type="submit" class="add btn btn-outline-primary btn-block">Add
+                        Exercise
+                    </button>
+                </form>`);
+
+    $(".modal-content").append(exerciseModalForm);
     for (let i = data.length - 1; i >= 0; i--) {
       count++;
       console.log(count);
