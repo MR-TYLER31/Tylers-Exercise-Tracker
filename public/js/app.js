@@ -114,7 +114,9 @@ function getPrevious() {
                 </form>`);
 
     $(".modal-content").append(exerciseModalForm);
+
     for (let i = data.length - 1; i >= 0; i--) {
+      var dateobj = new Date(data[i].created);
       count++;
       console.log(count);
       let colDiv = $("<div>");
@@ -136,7 +138,7 @@ function getPrevious() {
 
       let time = $('<h6 class="text-white">');
       time.addClass("workout-name");
-      time.html(`${data[i].name.created}`);
+      time.html(dateobj.toDateString());
       $(cardBody).append(time);
 
       let viewBtn = $(
