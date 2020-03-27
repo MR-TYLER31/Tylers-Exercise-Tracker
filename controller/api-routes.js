@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
 // Home page route
 router.get("/all", function(req, res) {
   db.Workout.find({})
-    .sort({ _id: 1 })
+    .sort({ _id: -1 })
     .populate("exercises")
     .then(function(dbWorkout) {
       res.send(dbWorkout);

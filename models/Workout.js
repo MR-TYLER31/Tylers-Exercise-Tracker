@@ -5,11 +5,8 @@ const Schema = mongoose.Schema;
 const WorkoutSchema = new Schema({
   name: {
     type: String,
-    trim: true
-  },
-  date: {
-    type: Date,
-    default: Date.now
+    trim: true,
+    created: Date
   },
   exercises: [
     {

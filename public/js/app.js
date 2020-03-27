@@ -1,3 +1,7 @@
+count = 0;
+
+// var currentDate = moment().format("L");
+
 function getToday() {
   // Empty any results currently on the page
   $("#new-workout").empty();
@@ -5,6 +9,7 @@ function getToday() {
   $.get("/all", function(data) {
     // console.log(data);
     // Loop through the workouts
+
     for (var i = 0; i < 1; i++) {
       //   let last = data.slice(-1);
 
@@ -86,9 +91,10 @@ function getPrevious() {
   // Grab all of the current notes
   $.get("/all", function(data) {
     // For each note...
-    console.log(data);
+    // console.log(data);
     for (let i = data.length - 1; i >= 0; i--) {
-      //   let last = data.pop();
+      count++;
+      console.log(count);
       let colDiv = $("<div>");
       colDiv.addClass("col-md-3 text-center");
       $("#prev-workout").append(colDiv);
@@ -106,8 +112,13 @@ function getPrevious() {
       h2.html(`${data[i].name}`);
       $(cardBody).append(h2);
 
+      let time = $('<h6 class="text-white">');
+      time.addClass("workout-name");
+      time.html(`${data[i].name.created}`);
+      $(cardBody).append(time);
+
       let viewBtn = $(
-        '<button class="btn btn-light btn-block my-5" data-toggle="collapse" href="#exerciseCollapse" role="button" aria-expanded="false" aria-controls="collapseExample">'
+        `<button class="btn btn-light btn-block my-5" data-toggle="collapse" href="#exerciseCollapse${count}" role="button" aria-expanded="false" aria-controls="collapseExample">`
       );
       viewBtn.html("View Exercises");
       $(cardBody).append(viewBtn);
@@ -122,8 +133,14 @@ function getPrevious() {
       let item = data[i].exercises;
       for (var j = 0; j < item.length; j++) {
         console.log(item[j]);
-
-        let cardCollapse = $('<div class="collapse" id="exerciseCollapse">');
+        // count++;
+        // console.log(count);
+        // collapseId = "exerciseCollapse";
+        // collapseId = collapseId + 1;
+        // console.log(collapseId);
+        let cardCollapse = $(
+          `<div class="collapse" id="exerciseCollapse${count}">`
+        );
         $(viewBtn).append(cardCollapse);
 
         let h3 = $("<h3>");
@@ -146,18 +163,18 @@ function getPrevious() {
   });
 }
 
-$(".add").on("click", function(event) {
-  event.preventDefault();
-  //   let id = $(this).attr("data-id");
+// $(".add").on("click", function(event) {
+//   event.preventDefault();
+//   //   let id = $(this).attr("data-id");
 
-  console.log(id);
-  $.ajax("/submit", {
-    type: "POST"
-  }).then(function(resp) {
-    console.log(resp);
-    location.reload();
-  });
-});
+//   //   console.log(id);
+//   $.ajax("/submit", {
+//     type: "POST"
+//   }).then(function(resp) {
+//     console.log(resp);
+//     location.reload();
+//   });
+// });
 
 getToday();
 getPrevious();
