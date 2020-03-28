@@ -160,6 +160,13 @@ function getPrevious() {
       addBtn.html("Add Exercise");
       $(cardBody).append(addBtn);
 
+      let removeBtn = $(
+        `<button class="delete btn btn-outline-danger btn-block my-5" data-id="${data[i]._id}">`
+      );
+
+      removeBtn.html("Remove Workout");
+      cardBody.append(removeBtn);
+
       // Loops through all exercises and displays them their workout cards
       let item = data[i].exercises;
       for (var j = 0; j < item.length; j++) {
@@ -188,6 +195,20 @@ function getPrevious() {
     }
   });
 }
+
+$("#prev-workout").on("click", ".delete", function(event) {
+  event.preventDefault();
+  console.log("click");
+  let id = $(this).attr("data-id");
+
+  console.log(id);
+  $.ajax("/delete/" + id, {
+    type: "DELETE"
+  }).then(function(resp) {
+    console.log(resp);
+    location.reload();
+  });
+});
 
 // getToday();
 getPrevious();

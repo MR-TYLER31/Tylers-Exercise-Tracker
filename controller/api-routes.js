@@ -43,4 +43,20 @@ router.post("/submit/:id", ({ body, params }, res) => {
   });
 });
 
+router.delete("/delete/:id", (req, res) => {
+  id = req.params.id;
+  db.Workout.remove(
+    {
+      _id: id
+    },
+    (error, data) => {
+      if (error) {
+        res.send(error);
+      } else {
+        res.send(data);
+      }
+    }
+  );
+});
+
 module.exports = router;
