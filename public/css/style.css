@@ -27,3 +27,7 @@
 .card.shadow {
     border: white 1px solid;
 }
+
+.delete {
+    color: white;
+}
