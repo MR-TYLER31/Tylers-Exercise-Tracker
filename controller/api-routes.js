@@ -43,12 +43,4 @@ router.post("/submit/:id", ({ body, params }, res) => {
   });
 });
 
-// router.put("/api/add/:id", function(req, res) {
-//   let id = req.params.id;
-
-//   db.Exercise.update(id, data => {
-//     res.json(data);
-//   });
-// });
-
 module.exports = router;
