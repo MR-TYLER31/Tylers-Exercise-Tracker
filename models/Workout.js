@@ -11,6 +11,7 @@ const WorkoutSchema = new Schema({
     type: Date,
     default: Date
   },
+
   exercises: [
     {
       type: Schema.Types.ObjectId,

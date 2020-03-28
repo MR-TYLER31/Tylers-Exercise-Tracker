@@ -95,7 +95,7 @@ function getPrevious() {
     // console.log(data);
 
     // Creates modal form to make new exercise
-    let exerciseModalForm = $(`  <form action="/submit" method="POST">
+    let exerciseModalForm = $(`  <form action="/submit/" method="POST">
                     <div class="form-group">
                         <input type="text" name="exerciseName" class="form-control" id="exercise-name"
                             placeholder="Enter Exercise">
@@ -151,7 +151,7 @@ function getPrevious() {
       $(cardBody).append(viewBtn);
 
       let addBtn = $(
-        `<button class="btn btn-outline-light btn-block my-5"  data-toggle="modal" data-target="#add-exercise">`
+        `<button class="btn btn-outline-light btn-block my-5" data-id="${data[i]._id}"  data-toggle="modal" data-target="#add-exercise">`
       );
 
       addBtn.html("Add Exercise");
@@ -228,4 +228,13 @@ $("#main-nav a").on("click", function(e) {
       }
     );
   }
+});
+
+$("#add-exercise").on("show.bs.modal", function(event) {
+  var button = $(event.relatedTarget); // Button that triggered the modal
+  var id = button.data("id"); // Extract info from data-* attributes
+  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+  var modal = $(this);
+  modal.find("form").attr("action", "submit/" + id);
 });

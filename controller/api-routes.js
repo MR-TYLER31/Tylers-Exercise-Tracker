@@ -26,22 +26,21 @@ router.post("/", ({ body }, res) => {
     });
 });
 
-router.post("/submit", ({ body }, res) => {
-  //   id = req.params.id;
-  db.Exercise.create(body)
-    .then(({ _id }) =>
-      db.Workout.findOneAndUpdate(
-        {},
-        { $push: { exercises: _id } },
-        { new: true }
-      )
+router.post("/submit/:id", ({ body, params }, res) => {
+  id = params.id;
+  db.Exercise.create(body).then(({ _id }) => {
+    db.Workout.findOneAndUpdate(
+      { _id: id },
+      { $push: { exercises: _id } },
+      { new: true }
     )
-    .then(dbUser => {
-      res.redirect("/");
-    })
-    .catch(err => {
-      res.json(err);
-    });
+      .then(dbUser => {
+        res.redirect("/");
+      })
+      .catch(err => {
+        res.json(err);
+      });
+  });
 });
 
 // router.put("/api/add/:id", function(req, res) {
